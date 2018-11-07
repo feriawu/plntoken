@@ -1,3 +1,6 @@
+<?php 
+  isset($_SESSION['id_pelanggan']) ? session_unset($_SESSION['id_pelanggan']) : false;
+ ?>
 <!-- page content -->
         <div class="right_col" role="main">
           <div class="">

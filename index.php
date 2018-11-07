@@ -1,9 +1,14 @@
 <?php 
+  session_start();
 	include_once('function/helper.php');
 	include_once('function/koneksi.php');
 	$page = isset($_GET['page']) ? $_GET['page'] : false;
-	$null_pelanggan = isset($_SESSION['null_pelanggan']) ? $_SESSION['null_pelanggan'] : false;
-	$null_input = isset($_SESSION['null_input']) ? $_SESSION['null_input'] : false;
+	isset($_SESSION['login_failed']) ? session_unset($_SESSION['login_failed']) : false;
+
+  $logged_in = isset($_SESSION['logged_in']) ? $_SESSION['logged_in'] : false;
+  if ($logged_in == false) {
+        header("location: ".base_url."/login.php");
+  }
 ?>
 
 <!DOCTYPE html>
@@ -70,11 +75,13 @@
                   <li><a href="<?php echo base_url.'?page=transaksi'; ?>"><i class="fa fa-credit-card"></i> Transaksi </a>
                   </li>
                   <br>
+                  <?php if ($logged_in['level'] == 1): ?>
                   <h3>Administrator</h3>
                   <li><a href="<?php echo base_url.'?page=rekap'; ?>"><i class="fa fa-archive"></i>Rekap Transaksi</a>
                   </li>
                   <li><a href="<?php echo base_url.'?page=data_user'; ?>"><i class="fa fa-users"></i>Users Management</a>
                   </li>
+                  <?php endif ?>
                 </ul>
               </div>
 
@@ -111,7 +118,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
+                    <img src="images/img.jpg" alt=""><?php echo $logged_in['username']; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -120,7 +127,7 @@
                         <span>Settings</span>
                       </a>
                     </li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 

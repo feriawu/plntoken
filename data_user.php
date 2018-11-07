@@ -1,3 +1,14 @@
+<?php if ($logged_in['level'] == 0): ?>
+  <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+                <h3 align="center"> You Have No Permission to open this page</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+ <?php else: ?>
 <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -90,6 +101,7 @@
           </div>
         </div>
         <!-- /page content -->
+<?php endif; ?>
 
         <script type="text/javascript">
           $(document).ready(function(){
