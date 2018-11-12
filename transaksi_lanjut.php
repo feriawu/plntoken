@@ -6,6 +6,8 @@
 
   $id_pelanggan = isset($_SESSION['id_pelanggan']) ? $_SESSION['id_pelanggan'] : false;
 
+  echo $_SESSION['id_pelanggan'];
+
   if ($id_pelanggan) {
       $query = mysqli_query($koneksi, "SELECT pelanggan.*, daya.nama_daya FROM pelanggan JOIN daya ON pelanggan.daya_id=daya.id WHERE pelanggan.id='$id_pelanggan'");
       $row = mysqli_fetch_assoc($query);

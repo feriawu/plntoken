@@ -37,7 +37,7 @@
                         <tr>
                           <th>No</th>
                           <th>Username</th>
-                          <th>Password</th>
+                          <!-- <th>Password</th> -->
                           <th>Level</th>
                           <th>Action</th>
                         </tr>
@@ -57,7 +57,7 @@
                        <tr>
                           <td><?php echo $no; ?></td>
                           <td><?php echo $row['username']; ?></td>
-                          <td><?php echo $row['password'];  ?></td>
+                          <!-- <td><?php echo $row['password'];  ?></td> -->
                           <td><?php echo $level; ?></td>
                           <td><a title="Edit" class='btn btn-sm btn-info' href='<?php echo base_url."?page=form_user&id=$row[id_user]"; ?>'><i class='fa fa-edit'></i></a>
                             <?php if ($row['status'] == 0): ?>

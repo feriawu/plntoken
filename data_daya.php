@@ -42,6 +42,8 @@
                           <td><?php echo $row['nama_daya']; ?></td>
                           <td><?php echo $row['ket'];  ?></td>
                           <td><a title="Edit" class='btn btn-sm btn-info' href='<?php echo base_url."?page=form_daya&id=$row[id]"; ?>'><i class='fa fa-edit'></i></a>
+                            
+                            <?php if ($logged_in['level'] == 1): ?>
                               <button title="Hapus permanen" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal"><i class='fa fa-trash'></i></button>
 
                               <!-- Modal -->
@@ -65,6 +67,7 @@
                                   
                                 </div>
                               </div>
+                            <?php endif ?>
                           </td>
                         </tr>
                         <?php $no++; ?>

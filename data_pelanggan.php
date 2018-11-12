@@ -53,6 +53,8 @@
                             <?php else: ?>
                               <a title="Aktif" class='btn btn-sm btn-success' href='<?php echo base_url."/action_pelanggan.php?id=$row[id]&soft_delete=0"; ?>'><i class='fa fa-toggle-on'></i></a>
                             <?php endif; ?>
+
+                            <?php if ($logged_in['level'] == 1): ?>
                               <button title="Hapus permanen" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal"><i class='fa fa-trash'></i></button>
 
                               <!-- Modal -->
@@ -76,6 +78,7 @@
                                   
                                 </div>
                               </div>
+                            <?php endif; ?>
                           </td>
                         </tr>
                         <?php $no++; ?>
