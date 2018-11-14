@@ -1,6 +1,5 @@
 <?php 
 	session_start();
-	include_once('function/koneksi.php');
 	include_once('function/helper.php');
 
 	$id_pelanggan = $_POST['id_pelanggan'];

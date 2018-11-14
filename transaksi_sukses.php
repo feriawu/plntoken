@@ -3,7 +3,7 @@
 	include_once('function/helper.php');
 	include_once('function/koneksi.php');
 
-	isset($_SESSION['id_pelanggan']) ? session_unset($_SESSION['id_pelanggan']) : false;
+	// isset($_SESSION['id_pelanggan']) ? session_unset($_SESSION['id_pelanggan']) : false;
 
 	$transaksi_id = $_GET['transaksi_id'];
 

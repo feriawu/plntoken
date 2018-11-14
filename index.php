@@ -22,6 +22,8 @@
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
     <title>Aplikasi Listrik Prabayar</title>
+        <!-- jQuery -->
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
     <link href="vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
@@ -219,8 +221,7 @@
       </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="vendors/jquery/dist/jquery.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -266,9 +267,24 @@
 
     <script type="text/javascript">
   $(document).ready(function() {
+    /** add active class and stay opened when selected */
+    var url = window.location;
+
+    // for sidebar menu entirely but not cover treeview
+    $('ul.side-menu a').filter(function() {
+    return this.href == url;
+    }).parent().addClass('active');
+
+    // for treeview
+    $('ul.treeview-menu a').filter(function() {
+    return this.href == url;
+    }).parentsUntil(".side-menu > .child-menu").addClass('active');
+
     $('#search_pelanggan').select2();
   });
 </script>
+
+
 	
   </body>
 </html>

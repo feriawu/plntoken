@@ -1,5 +1,5 @@
 <?php
-	session_start();  
+	// session_start();  
 	include_once('function/helper.php');
 	include_once('function/koneksi.php');
 	
@@ -10,10 +10,10 @@
 	$token_id = $_POST['token_id'];
 	$materai = isset($_POST['materai']) ? $_POST['materai'] : 0;
 
-	if ($token_id == 0) {
-		$_SESSION['null_token'] = "Token Tidak Boleh Kosong";
-		header("location: ".base_url."?page=transaksi_lanjut");
-	}
+	// if ($token_id == null) {
+	// 	$_SESSION['null_token'] = "Token Tidak Boleh Kosong";
+	// 	header("location: ".base_url."?page=transaksi_lanjut");
+	// }
 
 	
 	$query = mysqli_query($koneksi, "SELECT * FROM token WHERE id = $token_id");

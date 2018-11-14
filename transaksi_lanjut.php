@@ -2,11 +2,9 @@
   include_once('function/koneksi.php');
   include_once('function/helper.php');
 
-  $null_token = isset($_SESSION['null_token']) ? $_SESSION['null_token'] : false;
+  // $null_token = isset($_SESSION['null_token']) ? $_SESSION['null_token'] : false;
 
   $id_pelanggan = isset($_SESSION['id_pelanggan']) ? $_SESSION['id_pelanggan'] : false;
-
-  echo $_SESSION['id_pelanggan'];
 
   if ($id_pelanggan) {
       $query = mysqli_query($koneksi, "SELECT pelanggan.*, daya.nama_daya FROM pelanggan JOIN daya ON pelanggan.daya_id=daya.id WHERE pelanggan.id='$id_pelanggan'");
@@ -17,6 +15,8 @@
       $nama = $row['nama'];
       $alamat = $row['alamat'];
       $daya = $row['nama_daya'];
+    }else{
+      header('location: '.base_url.'/transaksi');
     }  
  ?>
   <!-- page content -->
@@ -76,13 +76,12 @@
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="token">Token *</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                  <?php if ($null_token): ?>
+                 <!--  <?php if ($null_token): ?>
                     <p><?php echo $null_token; ?></p>
                     <?php session_unset($_SESSION['null_token']); ?>
-                  <?php endif ?>
+                  <?php endif ?> -->
                   
                     <select id="token_id" name="token_id" class="form-control">
-                      <option value=0>Pilih Token</option>
                         <?php $query = mysqli_query($koneksi, "SELECT id, harga FROM token"); ?>
                         <?php while ($row = mysqli_fetch_assoc($query)) : ?>
                           <option value="<?php echo $row['id'] ?>"><?php echo rupiah($row['harga']); ?></option>

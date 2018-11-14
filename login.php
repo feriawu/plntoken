@@ -38,6 +38,7 @@
               <h1>Login Form</h1>
               <?php if ($login_failed): ?>
                 <p class="text-danger"><?php echo $login_failed; ?></p>
+                <?php session_unset($_SESSION['login_failed']); ?>
               <?php endif ?>
               <div>
                 <input name="username" type="text" class="form-control" placeholder="username" required="" />
