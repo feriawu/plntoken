@@ -1,30 +1,40 @@
-<?php 
-  $queryPelanggan = mysqli_query($koneksi, "SELECT id FROM pelanggan");
-  while ($rowP = mysqli_fetch_assoc($queryPelanggan)) {
+<?php
+$queryPelanggan = mysqli_query($koneksi, "SELECT id FROM pelanggan");
+while ($rowP = mysqli_fetch_assoc($queryPelanggan)) {
     $pelanggan[] = $rowP['id'];
-  }
-  $totalPelanggan = count($pelanggan);
+}
+$totalPelanggan = count($pelanggan);
 
-  $queryUser = mysqli_query($koneksi, "SELECT id_user FROM user");
-  while ($rowU = mysqli_fetch_assoc($queryUser)) {
+$queryUser = mysqli_query($koneksi, "SELECT id_user FROM user");
+while ($rowU = mysqli_fetch_assoc($queryUser)) {
     $user[] = $rowU['id_user'];
-  }
-  $totalUser = count($user);
+}
+$totalUser = count($user);
 
-  $queryTransaksi = mysqli_query($koneksi, "SELECT no_ref FROM transaksi");
-  while ($rowT = mysqli_fetch_assoc($queryTransaksi)) {
+$queryTransaksi = mysqli_query($koneksi, "SELECT no_ref FROM transaksi");
+while ($rowT = mysqli_fetch_assoc($queryTransaksi)) {
     $transaksi[] = $rowT['no_ref'];
-  }
-  $totalTransaksi = count($transaksi);
+}
+$totalTransaksi = count($transaksi);
 
-  $querySumModal = mysqli_query($koneksi, "SELECT sum(total_harga-admin_bank-ppn-ppj-materai), total_harga-admin_bank-ppn-ppj-materai FROM transaksi");
-  $totalModal = mysqli_fetch_assoc($querySumModal)['sum(total_harga-admin_bank-ppn-ppj-materai)'];
+$querySumModal = mysqli_query($koneksi, "SELECT sum(total_harga-admin_bank-ppn-ppj-materai), total_harga-admin_bank-ppn-ppj-materai FROM transaksi");
+$totalModal = mysqli_fetch_assoc($querySumModal)['sum(total_harga-admin_bank-ppn-ppj-materai)'];
 
-  $querySumLaba = mysqli_query($koneksi, "SELECT sum(total_harga-ppn-ppj-materai)-".$totalModal." FROM transaksi");
-  $totalLaba = mysqli_fetch_assoc($querySumLaba)["sum(total_harga-ppn-ppj-materai)-".$totalModal.""];
+$querySumLaba = mysqli_query($koneksi, "SELECT sum(total_harga-ppn-ppj-materai)-" . $totalModal . " FROM transaksi");
+$totalLaba = mysqli_fetch_assoc($querySumLaba)["sum(total_harga-ppn-ppj-materai)-" . $totalModal . ""];
 
+$modal_per_hari = mysqli_query($koneksi, "SELECT sum(total_harga-admin_bank-ppn-ppj-materai), total_harga-admin_bank-ppn-ppj-materai from transaksi group by CAST(tgl_pembelian AS DATE)");
 
- ?>
+$querytanggal = mysqli_query($koneksi, 'SELECT DISTINCT DATE(tgl_pembelian) FROM transaksi ORDER BY tgl_pembelian DESC LIMIT 10');
+// while ($row = mysqli_fetch_assoc($querytanggal)) {
+//     $tgl = $row['DATE(tgl_pembelian)'];
+//     $query = mysqli_query($koneksi, "SELECT sum(total_harga) FROM transaksi WHERE DATE(tgl_pembelian)='$tgl' ORDER BY tgl_pembelian DESC LIMIT 10");
+//     $row = mysqli_fetch_assoc($query);
+//     echo '"' . $row['sum(total_harga)'] . '",';
+// }
+// $tgl_pembelian[] = $list_tgl;
+// $uang[] = $list_uang;
+?>
 <!-- page content -->
         <div class="right_col" role="main">
           <!-- top tiles -->
@@ -88,7 +98,8 @@
                   <ga-progress progress-value="$ctrl.subscriptionValidity"></ga-progress>
                   </div>
                 </ga-dashboard-graph-flot> -->
-                  <div id="chart_plot_01" class="demo-placeholder"></div>
+                  <!-- <div id="chart_plot_01" class="demo-placeholder"></div> -->
+                  <canvas id="modal"></canvas>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
                   <div class="x_title">
@@ -140,3 +151,27 @@
           </div>
         </div>
         <!-- /page content -->
+
+        <script type="text/javascript">
+          $(document).ready(function(){
+            var ctx = document.getElementById("modal");
+            var lineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: [<?php while ($rowt = mysqli_fetch_array($querytanggal)) {echo '"' . $tgl[] = $rowt['DATE(tgl_pembelian)'] . '",';}?>],
+              datasets: [{
+              label: "Modal",
+              backgroundColor: "rgba(38, 185, 154, 0.31)",
+              borderColor: "rgba(38, 185, 154, 0.7)",
+              pointBorderColor: "rgba(38, 185, 154, 0.7)",
+              pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+              pointHoverBackgroundColor: "#fff",
+              pointHoverBorderColor: "rgba(220,220,220,1)",
+              pointBorderWidth: 1,
+              data: [<?php $tgl_pem = $tgl;
+echo json_encode($tgl_pem);?>]
+              }]
+            },
+            });
+          });
+        </script>
