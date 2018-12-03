@@ -26,14 +26,7 @@ $totalLaba = mysqli_fetch_assoc($querySumLaba)["sum(total_harga-ppn-ppj-materai)
 $modal_per_hari = mysqli_query($koneksi, "SELECT sum(total_harga-admin_bank-ppn-ppj-materai), total_harga-admin_bank-ppn-ppj-materai from transaksi group by CAST(tgl_pembelian AS DATE)");
 
 $querytanggal = mysqli_query($koneksi, 'SELECT DISTINCT DATE(tgl_pembelian) FROM transaksi ORDER BY tgl_pembelian DESC LIMIT 10');
-// while ($row = mysqli_fetch_assoc($querytanggal)) {
-//     $tgl = $row['DATE(tgl_pembelian)'];
-//     $query = mysqli_query($koneksi, "SELECT sum(total_harga) FROM transaksi WHERE DATE(tgl_pembelian)='$tgl' ORDER BY tgl_pembelian DESC LIMIT 10");
-//     $row = mysqli_fetch_assoc($query);
-//     echo '"' . $row['sum(total_harga)'] . '",';
-// }
-// $tgl_pembelian[] = $list_tgl;
-// $uang[] = $list_uang;
+
 ?>
 <!-- page content -->
         <div class="right_col" role="main">
@@ -42,27 +35,27 @@ $querytanggal = mysqli_query($koneksi, 'SELECT DISTINCT DATE(tgl_pembelian) FROM
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Pelanggan</span>
               <div class="count"><?php echo $totalPelanggan; ?></div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+              <!-- <span class="count_bottom"><i class="green">4% </i> From last Week</span> -->
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-clock-o"></i> Total user</span>
               <div class="count"><?php echo $totalUser; ?></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+              <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span> -->
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Transaksi</span>
               <div class="count green"><?php echo $totalTransaksi; ?></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Modal</span>
               <div class="count"><?php echo rupiah($totalModal); ?></div>
-              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+              <!-- <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span> -->
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Laba</span>
               <div class="count"><?php echo rupiah($totalLaba); ?></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
             </div>
           </div>
           <!-- /top tiles -->
@@ -73,17 +66,17 @@ $querytanggal = mysqli_query($koneksi, 'SELECT DISTINCT DATE(tgl_pembelian) FROM
 
                 <div class="row x_title">
                   <div class="col-md-6">
-                    <h3>Network Activities <small>Graph title sub-title</small></h3>
+                    <h3>Total Pendapatan Per Hari <small></small></h3>
                   </div>
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
                     <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                       <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                       <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
 
-                <div class="col-md-9 col-sm-9 col-xs-12">
+                <div class="col-md-12 col-sm-9 col-xs-12">
                   <!-- <ga-dashboard-graph-flot graph-title="Contest Activity"
                   graph-sub-title="subscriptions total, valid over time"
                   graph-legend-title="Validity"
@@ -101,7 +94,7 @@ $querytanggal = mysqli_query($koneksi, 'SELECT DISTINCT DATE(tgl_pembelian) FROM
                   <!-- <div id="chart_plot_01" class="demo-placeholder"></div> -->
                   <canvas id="modal"></canvas>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
+                <!-- <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
                   <div class="x_title">
                     <h2>Top Campaign Performance</h2>
                     <div class="clearfix"></div>
@@ -142,7 +135,7 @@ $querytanggal = mysqli_query($koneksi, 'SELECT DISTINCT DATE(tgl_pembelian) FROM
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
                 </div>
               </div>
@@ -158,9 +151,9 @@ $querytanggal = mysqli_query($koneksi, 'SELECT DISTINCT DATE(tgl_pembelian) FROM
             var lineChart = new Chart(ctx, {
             type: 'line',
             data: {
-              labels: [<?php while ($rowt = mysqli_fetch_array($querytanggal)) {echo '"' . $tgl[] = $rowt['DATE(tgl_pembelian)'] . '",';}?>],
+              labels: [<?php while ($rowt = mysqli_fetch_array($querytanggal)) { echo '"' . $tgl[] = $rowt['DATE(tgl_pembelian)'] . '",'; $tanggal = $tgl;}?>],
               datasets: [{
-              label: "Modal",
+              label: "Total Pendapatan",
               backgroundColor: "rgba(38, 185, 154, 0.31)",
               borderColor: "rgba(38, 185, 154, 0.7)",
               pointBorderColor: "rgba(38, 185, 154, 0.7)",
@@ -168,8 +161,13 @@ $querytanggal = mysqli_query($koneksi, 'SELECT DISTINCT DATE(tgl_pembelian) FROM
               pointHoverBackgroundColor: "#fff",
               pointHoverBorderColor: "rgba(220,220,220,1)",
               pointBorderWidth: 1,
-              data: [<?php $tgl_pem = $tgl;
-echo json_encode($tgl_pem);?>]
+              data: [<?php foreach ($tanggal as $key => $value) {
+                $tgl = $value;
+              $query = mysqli_query($koneksi, "SELECT sum(total_harga) FROM transaksi WHERE DATE(tgl_pembelian)='$tgl'");
+                $row = mysqli_fetch_assoc($query);
+                // echo $row['sum(total_harga)'];
+                echo $row['sum(total_harga)'].',';
+              } ?>]
               }]
             },
             });
