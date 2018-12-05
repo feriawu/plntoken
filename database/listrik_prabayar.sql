@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2018 at 10:55 AM
+-- Generation Time: Dec 05, 2018 at 04:44 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.1.16
 
@@ -130,7 +130,8 @@ INSERT INTO `transaksi` (`no_ref`, `pelanggan_id`, `token_id`, `kode_token`, `ad
 (19, '2018300062620001', 1, '2481 9236 2508 3580', 2000, 0, 0, 500, 22500, '2018-11-14 09:14:04'),
 (20, '2018300062620001', 1, '4089 2120 6852 5268', 2000, 0, 0, 500, 22500, '2018-11-14 09:16:37'),
 (21, '2018300062627826', 1, '1128 5455 7807 3812', 2000, 0, 0, 500, 22500, '2018-11-14 09:16:48'),
-(22, '2018300062628787', 1, '3908 4521 8395 2790', 2000, 0, 0, 500, 22500, '2018-11-14 09:16:53');
+(22, '2018300062628787', 1, '3908 4521 8395 2790', 2000, 0, 0, 500, 22500, '2018-11-14 09:16:53'),
+(23, '2018300062620001', 1, '7343 7293 8777 3102', 2000, 0, 0, 500, 22500, '2018-11-19 09:58:44');
 
 -- --------------------------------------------------------
 
@@ -153,7 +154,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `username`, `password`, `level`, `status`) VALUES
 (1, 'feri', '4c850dbd4128e75d16f407a9188e2aab', 1, 1),
 (4, 'kronos', 'e2a16c6503ba631d753dd0071787ab05', 0, 1),
-(5, 'galung', '2a73ac17d4d6653f3edbe8265fbf3a94', 1, 1);
+(5, 'galung', '2a73ac17d4d6653f3edbe8265fbf3a94', 1, 1),
+(6, 'adli', '55b5eac92aab2289d9a67c3929f8ea9d', 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -197,25 +199,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `daya`
 --
 ALTER TABLE `daya`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `token`
 --
 ALTER TABLE `token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `no_ref` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `no_ref` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

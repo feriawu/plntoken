@@ -74,7 +74,7 @@ $querytanggal = mysqli_query($koneksi, 'SELECT DISTINCT DATE(tgl_pembelian) FROM
                       <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
                     </div>
                   </div> -->
-                </div>
+                <!-- </div> -->
 
                 <div class="col-md-12 col-sm-9 col-xs-12">
                   <!-- <ga-dashboard-graph-flot graph-title="Contest Activity"
@@ -93,7 +93,7 @@ $querytanggal = mysqli_query($koneksi, 'SELECT DISTINCT DATE(tgl_pembelian) FROM
                 </ga-dashboard-graph-flot> -->
                   <!-- <div id="chart_plot_01" class="demo-placeholder"></div> -->
                   <canvas id="modal"></canvas>
-                </div>
+                <!-- </div> -->
                 <!-- <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
                   <div class="x_title">
                     <h2>Top Campaign Performance</h2>
@@ -136,8 +136,8 @@ $querytanggal = mysqli_query($koneksi, 'SELECT DISTINCT DATE(tgl_pembelian) FROM
                       </div>
                     </div>
                   </div> -->
-
-                </div>
+                
+                <!-- </div> -->
               </div>
             </div>
 

@@ -92,6 +92,9 @@
               <div class="col-12">
               	<h1><strong><?php echo "STROOM TOKEN : ".$row['kode_token']; ?><strong></h1>
               </div>
+              <div>
+                <a href="<?=base_url.'/tcpdf/pdf/print.php?id='.$row['no_ref']?>" class="btn btn-primary">Print</a>
+              </div>
 
             </div>
           </div>
